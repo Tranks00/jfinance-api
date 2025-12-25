@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>JFinance Web</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .card { border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+        .form-group { margin-bottom: 10px; }
+        input, select { padding: 8px; width: 100%; box-sizing: border-box; }
+        button { background-color: #28a745; color: white; border: none; padding: 10px 15px; cursor: pointer; width: 100%; }
+        button:hover { background-color: #218838; }
+        .lista { margin-top: 20px; }
+        .item { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+        .RECEITA { color: green; }
+        .DESPESA { color: red; }
+    </style>
+</head>
+<body>
+<h1>💰 JFinance</h1>
+
+<div class="card">
+    <h3>Nova Transação</h3>
+    <div class="form-group">
+        <input type="text" id="desc" placeholder="Descrição (ex: Mercado)">
+    </div>
+    <div class="form-group">
+        <input type="number" id="valor" placeholder="Valor (ex: 50.00)">
+    </div>
+    <div class="form-group">
+        <select id="tipo">
+            <option value="RECEITA">Receita (Entrada)</option>
+            <option value="DESPESA">Despesa (Saída)</option>
+        </select>
+    </div>
+    <button onclick="salvar()">Adicionar</button>
+</div>
+
+<div class="lista" id="listaTransacoes">
+    <h3>Extrato:</h3>
+</div>
+
+<script>
+    const API_URL = '/api/transacoes';
+
+    // 1. Função para Buscar dados do Java (GET)
+    async function carregarLista() {
+        const resposta = await fetch(API_URL);
+        const transacoes = await resposta.json();
+
+        const listaDiv = document.getElementById('listaTransacoes');
+        listaDiv.innerHTML = '<h3>Extrato:</h3>'; // Limpa e põe título
+
+        transacoes.forEach(t => {
+            const item = document.createElement('div');
+            item.className = 'item ' + t.tipo;
+            item.innerHTML = `
+                <span>${t.descricao}</span>
+                <span>R$ ${t.valor.toFixed(2)}</span>
+            `;
+            listaDiv.appendChild(item);
+        });
+    }
+
+    // 2. Função para Enviar dados para o Java (POST)
+    async function salvar() {
+        const desc = document.getElementById('desc').value;
+        const valor = document.getElementById('valor').value;
+        const tipo = document.getElementById('tipo').value;
+
+        const novaTransacao = {
+            descricao: desc,
+            valor: parseFloat(valor),
+            tipo: tipo
+        };
+
+        await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(novaTransacao)
+        });
+
+        // Limpa campos e recarrega
+        document.getElementById('desc').value = '';
+        document.getElementById('valor').value = '';
+        carregarLista();
+    }
+
+    // Carrega a lista assim que abrir a página
+    carregarLista();
+</script>
+</body>
+</html>
