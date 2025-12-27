@@ -44,3 +44,18 @@ A API roda nativamente na porta `8080`.
   "valor": 1500.00,
   "tipo": "RECEITA"
 }
+## 🛠️ Como Executar o Projeto
+
+Siga estas instruções para rodar a API na sua máquina local.
+
+### Pré-requisitos
+Antes de começar, você precisa ter instalado:
+* **Java JDK 21** (ou 17)
+* **Git**
+
+### Passo a Passo
+
+1. **Clone o repositório:**
+   Abra seu terminal e digite:
+   ```bash
+   git clone [https://github.com/Tranks00/jfinance-api.git](https://github.com/Tranks00/jfinance-api.git)
