@@ -48,12 +48,12 @@ A API roda nativamente na porta `8080`.
 
 Siga estas instruções para rodar a API na sua máquina local.
 
-### Pré-requisitos
+## Pré-requisitos
 Antes de começar, você precisa ter instalado:
 * **Java JDK 21** (ou 17)
 * **Git**
 
-### Passo a Passo
+## Passo a Passo
 
 1. **Clone o repositório:**
    Abra seu terminal e digite:
