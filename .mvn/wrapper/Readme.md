@@ -37,15 +37,7 @@ A API roda nativamente na porta `8080`.
 | `POST` | `/api/transacoes`  | Cria uma nova transação.           |
 | `GET`  | `/api/saldo`       | Retorna o valor do saldo atual.    |
 
-### Exemplo de JSON para `POST`:
-```json
-{
-  "descricao": "Freelance Java",
-  "valor": 1500.00,
-  "tipo": "RECEITA"
-}
-'''json
-## 🛠️ Como Executar o Projeto
+##🛠️ Como Executar o Projeto
 
 Siga estas instruções para rodar a API na sua máquina local.
 
@@ -60,3 +52,19 @@ Antes de começar, você precisa ter instalado:
    Abra seu terminal e digite:
    ```bash
    git clone [https://github.com/Tranks00/jfinance-api.git](https://github.com/Tranks00/jfinance-api.git)
+
+### Exemplo de JSON para `POST`:
+```json
+{
+  "descricao": "Freelance Java",
+  "valor": 1500.00,
+  "tipo": "RECEITA"
+}
+
+
+
+
+
+
+
+
